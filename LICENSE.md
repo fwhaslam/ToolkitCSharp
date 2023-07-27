@@ -1,6 +1,6 @@
-MIT License
+# https://opensource.org/license/mit/
 
-Copyright (c) 2023 fwhaslam
+Copyright 2023 Frederick William Haslam Born 1962 USA
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,0 +1,18 @@
+<Project>
+
+  <!-- properties shared by all projects in solution -->
+
+  <PropertyGroup>
+    
+    <!-- maximunm .net version that can be used with Unity -->
+    <TargetFramework>net4.7.1</TargetFramework>
+    
+    <!-- '-alpha' means prerelease version -->
+    <Version>0.1.0</Version>
+
+    <!-- max language for .net 4 version :: beware confusing version information  -->
+    <LangVersion>7.0</LangVersion>
+    
+  </PropertyGroup>
+
+</Project>
