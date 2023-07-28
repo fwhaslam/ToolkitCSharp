@@ -10,6 +10,12 @@ namespace ToolkitCSharpTest.Text {
 
 	[TestClass]
     public class StringToolsTest {
+
+		internal string[] LongStringSamples(){
+			var first = "something sort of long that has some similarity to the next";
+			var second = "something that is sort fo long with some kind of similarity to the previous";
+			return new string[]{first,second};
+		}
         
 		[TestMethod]
 		public void SubstringBefore_str_str(){
@@ -105,6 +111,58 @@ namespace ToolkitCSharpTest.Text {
 			AreEqual( "thing", StringTools.SubstringAfterLast('X',"XsomeXthing") );
 			AreEqual( "", StringTools.SubstringAfterLast('X',"someXthingX") );
 			AreEqual( "", StringTools.SubstringAfterLast('X',"somethingX") );
+		}
+
+
+		[TestMethod]
+		public void GetLevenshteinDistance(){
+
+			AreEqual( 0, StringTools.GetLevenshteinDistance( "same", "same" ) );
+			AreEqual( 0, StringTools.GetLevenshteinDistance( "", "" ) );
+			AreEqual( 0, StringTools.GetLevenshteinDistance( "Same\nOld", "Same\nOld" ) );
+
+			AreEqual( 1, StringTools.GetLevenshteinDistance( "a", "A" ) );
+			AreEqual( 1, StringTools.GetLevenshteinDistance( "a", "" ) );
+			AreEqual( 1, StringTools.GetLevenshteinDistance( "a", "b" ) );
+			AreEqual( 1, StringTools.GetLevenshteinDistance( "a", "ab" ) );
+
+			AreEqual( 2, StringTools.GetLevenshteinDistance( "ba", "ab" ) );
+
+		}
+
+		[TestMethod]
+		public void GetLevenshteinDistance_longStrings(){
+
+			var strs = LongStringSamples();
+
+			var results = StringTools.GetLevenshteinDistance( strs[0], strs[1] );
+
+			AreEqual( 31, results );
+		}
+		
+		[TestMethod]
+		public void GetDamerauLevenshteinDistance(){
+
+			AreEqual( 0, StringTools.GetDamerauLevenshteinDistance( "same", "same" ) );
+			AreEqual( 0, StringTools.GetDamerauLevenshteinDistance( "", "" ) );
+			AreEqual( 0, StringTools.GetDamerauLevenshteinDistance( "Same\nOld", "Same\nOld" ) );
+
+			AreEqual( 1, StringTools.GetDamerauLevenshteinDistance( "a", "A" ) );
+			AreEqual( 1, StringTools.GetDamerauLevenshteinDistance( "a", "" ) );
+			AreEqual( 1, StringTools.GetDamerauLevenshteinDistance( "a", "b" ) );
+			AreEqual( 1, StringTools.GetDamerauLevenshteinDistance( "a", "ab" ) );
+
+			AreEqual( 1, StringTools.GetDamerauLevenshteinDistance( "ba", "ab" ) );
+
+		}
+		[TestMethod]
+		public void GetDamerauLevenshteinDistance_longStrings(){
+
+			var strs = LongStringSamples();
+
+			var results = StringTools.GetDamerauLevenshteinDistance( strs[0], strs[1] );
+
+			AreEqual( 30, results );
 		}
     }
 }
